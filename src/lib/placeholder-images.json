@@ -17,6 +17,12 @@
       "description": "Server room with glowing lights",
       "imageUrl": "https://images.unsplash.com/photo-1573164713988-8665fc963095?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzZXJ2ZXIlMjByb29tfGVufDB8fHx8MTc3MTA0NjMyNXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "server room"
+    },
+    {
+      "id": "profile-picture",
+      "description": "Developer portrait",
+      "imageUrl": "https://images.unsplash.com/photo-1562168908-d43360357a57?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cG9ydHJhaXQlMjBwZXJzb258ZW58MHx8fHwxNzcxMDk1MTY0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "portrait person"
     }
   ]
 }
