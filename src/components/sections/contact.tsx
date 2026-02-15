@@ -1,11 +1,11 @@
 import { Button } from '../ui/button';
-import { Github, Linkedin, Twitter } from 'lucide-react';
+import { Github, Linkedin, Instagram } from 'lucide-react';
 import Link from 'next/link';
 
 const socialLinks = [
-  { icon: Github, href: '#', label: 'GitHub' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
+  { icon: Github, href: 'https://github.com/CODEWITH-Manthan', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/manthan-s-ilake-131210370', label: 'LinkedIn' },
+  { icon: Instagram, href: 'https://www.instagram.com/_manthannnnnnnn_', label: 'Instagram' },
 ];
 
 export default function ContactSection() {
