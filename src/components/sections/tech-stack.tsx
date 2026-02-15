@@ -1,26 +1,26 @@
 const techRow1 = [
   "React",
-  "Next.js",
-  "Python",
-  "Node.js",
-  "Java",
-  "Django",
-  "MySQL",
-  "Tailwind",
+  "Bootstrap",
+  "Frontend",
+  "Backend",
+  "Responsive Design",
   "Git",
-  "GraphQL",
+  "MySQL",
+  "Webpack",
+  "Postman",
+  "Apache HTTP Server",
 ];
 const techRow2 = [
+  "Next.js",
   "TypeScript",
+  "Tailwind CSS",
+  "Node.js",
+  "Visual Studio Code",
   "Firebase",
+  "Vercel",
   "Docker",
-  "Kubernetes",
-  "AWS",
-  "Zod",
-  "Genkit",
-  "Figma",
-  "PostgreSQL",
-  "Vercel"
+  "GraphQL",
+  "JavaScript",
 ];
 
 const TechItem = ({ name }: { name: string }) => (

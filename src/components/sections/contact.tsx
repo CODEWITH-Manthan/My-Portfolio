@@ -25,7 +25,7 @@ export default function ContactSection() {
               size="lg"
               className="bg-accent text-accent-foreground hover:bg-accent/90 border-2 border-accent-foreground font-bold text-lg"
             >
-              <a href="mailto:hello@dev.exe">hello@dev.exe</a>
+              <a href="mailto:manthanilake@gmail.com">manthanilake@gmail.com</a>
             </Button>
           </div>
           <div className="mt-12 flex justify-center gap-6">

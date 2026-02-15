@@ -2,27 +2,27 @@
   "placeholderImages": [
     {
       "id": "project-1",
-      "description": "Abstract visualization of code",
-      "imageUrl": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMGNvZGV8ZW58MHx8fHwxNzcxMTM0MjEyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "abstract code"
+      "description": "A web application for alumni to connect.",
+      "imageUrl": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzb2NpYWwlMjBuZXR3b3JrfGVufDB8fHx8MTcxODg5NjU4Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "social network"
     },
     {
       "id": "project-2",
-      "description": "Futuristic technology interface",
-      "imageUrl": "https://images.unsplash.com/photo-1597075095400-fb3f0de70140?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dGVjaCUyMGludGVyZmFjZXxlbnwwfHx8fDE3NzExNDM2MTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "tech interface"
+      "description": "An e-commerce website clone.",
+      "imageUrl": "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvbmxpbmUlMjBzaG9wcGluZ3xlbnwwfHx8fDE3MTg4OTY2MTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "online shopping"
     },
     {
       "id": "project-3",
-      "description": "Server room with glowing lights",
-      "imageUrl": "https://images.unsplash.com/photo-1573164713988-8665fc963095?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzZXJ2ZXIlMjByb29tfGVufDB8fHx8MTc3MTA0NjMyNXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "server room"
+      "description": "A developer portfolio website.",
+      "imageUrl": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkZXZlbG9wZXIlMjBwb3J0Zm9saW98ZW58MHx8fHwxNzE4ODk2NjQwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "developer portfolio"
     },
     {
       "id": "profile-picture",
-      "description": "Developer portrait",
-      "imageUrl": "https://images.unsplash.com/photo-1562168908-d43360357a57?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cG9ydHJhaXQlMjBwZXJzb258ZW58MHx8fHwxNzcxMDk1MTY0fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "portrait person"
+      "description": "Manthan Ilake, Web Developer",
+      "imageUrl": "https://images.unsplash.com/photo-1605379399642-870262d3d051?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkZXZlbG9wZXJ8ZW58MHx8fHwxNzEwODg0NzY0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male developer"
     }
   ]
 }

@@ -6,8 +6,8 @@ import Footer from '@/components/layout/footer';
 import CustomCursor from '@/components/ui/custom-cursor';
 
 export const metadata: Metadata = {
-  title: 'RetroForge Portfolio',
-  description: 'A modern developer portfolio with a Retro Tech Brutalist design style.',
+  title: 'Manthan Ilake | Web Developer',
+  description: 'Portfolio of Manthan Ilake, a passionate web developer.',
 };
 
 export default function RootLayout({

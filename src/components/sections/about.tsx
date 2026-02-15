@@ -30,20 +30,20 @@ export default function AboutSection() {
               WHO AM I?
             </h2>
             <p className="text-lg text-muted-foreground">
-              I'm a full-stack developer with a passion for creating performant, scalable, and engaging digital experiences. My journey in tech is driven by a curiosity to solve complex problems and a desire to build software that makes a real impact. I thrive in collaborative environments and I'm always eager to learn new technologies.
+              Highly motivated web developer with a solid computer science education. I have extensive expertise building responsive and interactive web pages. I'm incredibly detail-oriented and focused on user experience. I'm excited about the possibility to work in a professional context, where I can contribute to exciting projects and provide solutions.
             </p>
             <ul className="space-y-4 text-lg">
               <li className="flex items-start">
                 <span className="text-primary font-bold mr-3">&gt;</span>
-                Specialized in Modern Web Development
+                Frontend Development
               </li>
               <li className="flex items-start">
                 <span className="text-primary font-bold mr-3">&gt;</span>
-                Focused on Performance & AI Integration
+                Backend Development
               </li>
               <li className="flex items-start">
                 <span className="text-primary font-bold mr-3">&gt;</span>
-                3+ years building scalable applications
+                Responsive Design
               </li>
             </ul>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">

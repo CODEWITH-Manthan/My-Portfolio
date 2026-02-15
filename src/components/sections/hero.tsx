@@ -13,7 +13,7 @@ export default function HeroSection() {
           SYSTEM STATUS: ONLINE
         </div>
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter uppercase font-headline">
-          Full Stack <span className="text-outline">Developer</span>
+          Manthan Ilake<br/><span className="text-outline">Web Developer</span>
           <span className="inline-block animate-blink text-primary">_</span>
         </h1>
         <div className="mt-6">
@@ -22,7 +22,7 @@ export default function HeroSection() {
           </p>
         </div>
         <p className="mt-6 text-muted-foreground text-lg tracking-widest">
-          React • Python • Node • Java
+          React • Bootstrap • MySQL • Git
         </p>
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button asChild size="lg" className="font-bold border-2 border-primary-foreground text-base w-full sm:w-auto">

@@ -29,7 +29,7 @@ export default function Header() {
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <Link href="/" className="font-bold text-lg md:text-xl font-headline tracking-widest">
-          Dev.exe
+          MANTHAN.I
         </Link>
         <nav className="hidden md:flex items-center gap-6">
           <ul className="flex items-center gap-6">

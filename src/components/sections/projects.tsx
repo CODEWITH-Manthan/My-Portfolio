@@ -8,18 +8,18 @@ import Link from 'next/link';
 const projects = [
   {
     id: 'project-1',
-    title: 'Project Alpha',
-    description: 'A cutting-edge web application built with Next.js and AI, designed for high performance and scalability.'
+    title: 'AlumniConnect',
+    description: 'A web platform for alumni of an institution to connect with each other, share experiences and opportunities.'
   },
   {
     id: 'project-2',
-    title: 'Project Beta',
-    description: 'An interactive data visualization platform using React and Python, providing real-time analytics.'
+    title: 'E-commerce Website Clone',
+    description: 'A feature-rich clone of a major e-commerce platform, demonstrating frontend and backend skills.'
   },
   {
     id: 'project-3',
-    title: 'Project Gamma',
-    description: 'A robust back-end system developed with Node.js and GraphQL, powering a large-scale mobile app.'
+    title: 'Developer Portfolio',
+    description: 'This personal portfolio website, built with Next.js and Tailwind CSS with a Retro Tech Brutalist design.'
   },
 ]
 
