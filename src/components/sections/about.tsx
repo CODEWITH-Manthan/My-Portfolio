@@ -25,31 +25,49 @@ export default function AboutSection() {
             <div className="absolute inset-0 bg-primary/20 mix-blend-color pointer-events-none"></div>
           </div>
 
-          <div className="md:col-span-3 space-y-6">
-            <h2 className="text-4xl md:text-5xl font-bold font-headline tracking-tighter">
-              WHO AM I?
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Highly motivated web developer with a solid computer science education. I have extensive expertise building responsive and interactive web pages. I'm incredibly detail-oriented and focused on user experience. I'm excited about the possibility to work in a professional context, where I can contribute to exciting projects and provide solutions.
-            </p>
-            <ul className="space-y-4 text-lg">
-              <li className="flex items-start">
-                <span className="text-primary font-bold mr-3">&gt;</span>
-                Frontend Development
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary font-bold mr-3">&gt;</span>
-                Backend Development
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary font-bold mr-3">&gt;</span>
-                Responsive Design
-              </li>
-            </ul>
+          <div className="md:col-span-3 space-y-8">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold font-headline tracking-tighter">
+                PROFILE SUMMARY
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Highly motivated web developer with a solid computer science education and previous experience working on personal projects. I have extensive expertise building responsive and interactive web pages, am incredibly detail-oriented, and am concerned with user experience. I'm delighted about the possibility to work as a web developer in a professional context, where I can contribute to exciting projects and provide solutions. As a marketing strategist, I also help clients create effective and unique marketing strategies to raise their online profile.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold font-headline tracking-tighter mb-4">EDUCATION</h3>
+              <div className="border-l-2 border-primary pl-4">
+                <p className="text-lg font-semibold">Vivekanand Education Society Institute of Technology</p>
+                <p className="text-muted-foreground">Electronic and Computer Science Engineering</p>
+                <p className="text-sm text-primary font-mono">2024-2028</p>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold font-headline tracking-tighter mb-4">SKILLS & INTERESTS</h3>
+              <div className="grid sm:grid-cols-2 gap-6 text-lg">
+                <ul className="space-y-2">
+                  <li className="flex items-start"><span className="text-primary font-bold mr-3">&gt;</span>Frontend & Backend</li>
+                  <li className="flex items-start"><span className="text-primary font-bold mr-3">&gt;</span>Responsive Design</li>
+                  <li className="flex items-start"><span className="text-primary font-bold mr-3">&gt;</span>Supervising</li>
+                  <li className="flex items-start"><span className="text-primary font-bold mr-3">&gt;</span>Event Planning</li>
+                  <li className="flex items-start"><span className="text-primary font-bold mr-3">&gt;</span>Propel Marketing</li>
+                </ul>
+                <ul className="space-y-2">
+                  <li className="flex items-start"><span className="text-primary font-bold mr-3">&gt;</span>Newsletter Design</li>
+                  <li className="flex items-start"><span className="text-primary font-bold mr-3">&gt;</span>Fluent in English</li>
+                  <li className="flex items-start"><span className="text-primary font-bold mr-3">&gt;</span>Sports</li>
+                  <li className="flex items-start"><span className="text-primary font-bold mr-3">&gt;</span>Social Media Management</li>
+                  <li className="flex items-start"><span className="text-primary font-bold mr-3">&gt;</span>Graphic Design</li>
+                </ul>
+              </div>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <div className="border-2 p-4 w-full">
                 <h3 className="font-bold text-lg mb-2 text-primary">LOCATION</h3>
-                <p className="text-lg">India</p>
+                <p className="text-lg">Balkum Thane (W), India</p>
               </div>
               <div className="border-2 p-4 w-full">
                 <h3 className="font-bold text-lg mb-2 text-primary">STATUS</h3>

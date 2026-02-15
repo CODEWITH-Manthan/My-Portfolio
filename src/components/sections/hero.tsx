@@ -22,7 +22,7 @@ export default function HeroSection() {
           </p>
         </div>
         <p className="mt-6 text-muted-foreground text-lg tracking-widest">
-          React • Bootstrap • MySQL • Git
+          React • MySQL • Git • Webpack
         </p>
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button asChild size="lg" className="font-bold border-2 border-primary-foreground text-base w-full sm:w-auto">

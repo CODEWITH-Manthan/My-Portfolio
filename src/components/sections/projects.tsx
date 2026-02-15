@@ -14,7 +14,7 @@ const projects = [
   {
     id: 'project-2',
     title: 'E-commerce Website Clone',
-    description: 'A feature-rich clone of a major e-commerce platform, demonstrating frontend and backend skills.'
+    description: 'A feature-rich clone of Amazon, demonstrating frontend and backend skills.'
   },
   {
     id: 'project-3',
