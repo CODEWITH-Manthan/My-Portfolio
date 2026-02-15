@@ -1,3 +1,22 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "project-1",
+      "description": "Abstract visualization of code",
+      "imageUrl": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMGNvZGV8ZW58MHx8fHwxNzcxMTM0MjEyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract code"
+    },
+    {
+      "id": "project-2",
+      "description": "Futuristic technology interface",
+      "imageUrl": "https://images.unsplash.com/photo-1597075095400-fb3f0de70140?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dGVjaCUyMGludGVyZmFjZXxlbnwwfHx8fDE3NzExNDM2MTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tech interface"
+    },
+    {
+      "id": "project-3",
+      "description": "Server room with glowing lights",
+      "imageUrl": "https://images.unsplash.com/photo-1573164713988-8665fc963095?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzZXJ2ZXIlMjByb29tfGVufDB8fHx8MTc3MTA0NjMyNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "server room"
+    }
+  ]
 }

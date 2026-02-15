@@ -1,3 +1,19 @@
+import AboutSection from '@/components/sections/about';
+import AiResumeTool from '@/components/sections/ai-resume-tool';
+import ContactSection from '@/components/sections/contact';
+import HeroSection from '@/components/sections/hero';
+import ProjectsSection from '@/components/sections/projects';
+import TechStackSection from '@/components/sections/tech-stack';
+
 export default function Home() {
-  return <></>;
+  return (
+    <div className="flex flex-col">
+      <HeroSection />
+      <AboutSection />
+      <TechStackSection />
+      <ProjectsSection />
+      <AiResumeTool />
+      <ContactSection />
+    </div>
+  );
 }
