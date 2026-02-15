@@ -2,21 +2,21 @@
   "placeholderImages": [
     {
       "id": "project-1",
-      "description": "A web application for alumni to connect.",
-      "imageUrl": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzb2NpYWwlMjBuZXR3b3JrfGVufDB8fHx8MTcxODg5NjU4Nnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "social network"
+      "description": "A web platform for alumni to connect.",
+      "imageUrl": "https://images.unsplash.com/photo-1583569582854-3725d7b35f56?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZXRybyUyMGNvbXB1dGVyJTIwbmV0d29ya3xlbnwwfHx8fDE3MjExODQwNTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "retro network"
     },
     {
       "id": "project-2",
       "description": "An e-commerce website clone.",
-      "imageUrl": "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvbmxpbmUlMjBzaG9wcGluZ3xlbnwwfHx8fDE3MTg4OTY2MTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "online shopping"
+      "imageUrl": "https://images.unsplash.com/photo-1611142937989-399995497258?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxyZXRybyUyMG9ubGluZSUyMHNob3BwaW5nfGVufDB8fHx8MTcyMTE4NDExM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "retro shopping"
     },
     {
       "id": "project-3",
       "description": "A developer portfolio website.",
-      "imageUrl": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkZXZlbG9wZXIlMjBwb3J0Zm9saW98ZW58MHx8fHwxNzE4ODk2NjQwfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "developer portfolio"
+      "imageUrl": "https://images.unsplash.com/photo-1550745165-9bc0b252726a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZXRybyUyMHRlY2h8ZW58MHx8fHwxNzIxMTg0MTQ4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "retro tech"
     },
     {
       "id": "profile-picture",

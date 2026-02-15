@@ -1,9 +1,10 @@
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card';
 import { Button } from '../ui/button';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 const projects = [
   {
@@ -35,37 +36,55 @@ export default function ProjectsSection() {
             A selection of my work.
           </p>
         </div>
-        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => {
-            const image = PlaceHolderImages.find(img => img.id === project.id);
-            return (
-              <Card key={project.id} className="bg-background border-2 overflow-hidden group transition-all hover:border-primary hover:shadow-[0_10px_20px_-5px_hsl(var(--primary)/0.3)]">
-                <CardHeader>
-                  {image && (
-                    <div className="aspect-video overflow-hidden border-b-2">
-                       <Image
-                        src={image.imageUrl}
-                        alt={image.description}
-                        width={600}
-                        height={400}
-                        className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                        data-ai-hint={image.imageHint}
-                      />
+        <div className="mt-12 relative">
+          <Carousel
+            opts={{
+              align: 'start',
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {projects.map((project) => {
+                const image = PlaceHolderImages.find(img => img.id === project.id);
+                return (
+                  <CarouselItem key={project.id} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-1 h-full">
+                      <Card className="bg-background border-2 overflow-hidden group transition-all h-full flex flex-col hover:border-primary hover:shadow-[0_10px_20px_-5px_hsl(var(--primary)/0.3)]">
+                        {image && (
+                          <div className="aspect-video overflow-hidden border-b-2 relative">
+                            <Image
+                              src={image.imageUrl}
+                              alt={image.description}
+                              width={600}
+                              height={400}
+                              className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                              data-ai-hint={image.imageHint}
+                            />
+                            <div className="absolute inset-0 bg-primary/30 mix-blend-hard-light group-hover:bg-transparent transition-colors duration-300 pointer-events-none"></div>
+                            <div className="absolute inset-0 bg-background/50 mix-blend-screen group-hover:bg-transparent transition-colors duration-300 pointer-events-none"></div>
+                          </div>
+                        )}
+                        <div className="p-6 flex flex-col flex-grow">
+                          <CardTitle className="text-2xl font-bold">{project.title}</CardTitle>
+                          <CardDescription className="mt-2 flex-grow">{project.description}</CardDescription>
+                        </div>
+                        <CardContent className="pt-0">
+                          <Button asChild variant="link" className="p-0 font-bold text-primary">
+                            <Link href="#">
+                              View Project <ArrowRight className="ml-2 h-4 w-4" />
+                            </Link>
+                          </Button>
+                        </CardContent>
+                      </Card>
                     </div>
-                  )}
-                  <CardTitle className="pt-4 text-2xl font-bold">{project.title}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button asChild variant="link" className="p-0 font-bold text-primary">
-                    <Link href="#">
-                      View Project <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            );
-          })}
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
         </div>
       </div>
     </section>
