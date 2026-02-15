@@ -3,6 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
+import CustomCursor from '@/components/ui/custom-cursor';
 
 export const metadata: Metadata = {
   title: 'RetroForge Portfolio',
@@ -22,6 +23,8 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
+        <CustomCursor />
+        <div className="scanline-effect"></div>
         <Header />
         <main>{children}</main>
         <Footer />
