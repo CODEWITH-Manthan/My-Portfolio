@@ -10,25 +10,22 @@ const projects = [
     id: 'project-01',
     title: 'AlumniConnect',
     description: 'A web platform for alumni of an institution to connect with each other, share experiences and opportunities.',
-    tech: ['Next.js', 'Firebase', 'Tailwind CSS', 'Genkit']
+    tech: ['TypeScript', 'Next.js', 'Firebase', 'Tailwind CSS'],
+    link: 'https://github.com/CODEWITH-Manthan/AlumniConnect'
   },
   {
     id: 'project-02',
-    title: 'E-commerce Website Clone',
-    description: 'A feature-rich clone of Amazon, demonstrating frontend and backend skills in a complex, real-world application.',
-    tech: ['React', 'Node.js', 'Express', 'MongoDB']
+    title: 'TRACKFIT',
+    description: 'Fitness tracking application with various features.',
+    tech: ['TypeScript'],
+    link: 'https://github.com/CODEWITH-Manthan/TRACKFIT'
   },
   {
     id: 'project-03',
-    title: 'Developer Portfolio',
-    description: 'This personal portfolio website, built with a retro-tech brutalist design to showcase my skills and projects.',
-    tech: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Framer Motion']
-  },
-  {
-    id: 'project-04',
-    title: 'Task Management App',
-    description: 'A simple and intuitive task management application to help users stay organized and productive.',
-    tech: ['Vue.js', 'Vuex', 'SCSS']
+    title: 'SPIT_DD',
+    description: 'Project SPIT_DD for arcade core OS.',
+    tech: ['TypeScript'],
+    link: 'https://github.com/CODEWITH-Manthan/SPIT_DD'
   }
 ]
 
@@ -75,8 +72,8 @@ export default function ProjectsSection() {
                             <span className="text-muted-foreground font-mono text-xs">OPERATIONAL</span>
                         </div>
                         <Button asChild variant="link" className="p-0 font-bold text-primary">
-                          <Link href="#">
-                            View <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          <Link href={project.link} target="_blank" rel="noopener noreferrer">
+                            View Repo <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                           </Link>
                         </Button>
                       </CardFooter>
@@ -85,6 +82,10 @@ export default function ProjectsSection() {
                 </CarouselItem>
               ))}
             </CarouselContent>
+            <div className="flex justify-center gap-4 mt-8 md:hidden">
+              <CarouselPrevious className="relative flex inset-0 translate-y-0 translate-x-0 h-10 w-10 border-2 border-primary bg-background hover:bg-primary hover:text-primary-foreground" />
+              <CarouselNext className="relative flex inset-0 translate-y-0 translate-x-0 h-10 w-10 border-2 border-primary bg-background hover:bg-primary hover:text-primary-foreground" />
+            </div>
             <CarouselPrevious className="hidden md:flex" />
             <CarouselNext className="hidden md:flex" />
           </Carousel>

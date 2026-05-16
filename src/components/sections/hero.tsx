@@ -29,7 +29,7 @@ export default function HeroSection() {
             <Link href="#projects">[ VIEW PROJECTS ]</Link>
           </Button>
           <Button asChild variant="outline" size="lg" className="font-bold border-2 text-base w-full sm:w-auto">
-            <a href="/cv_placeholder.pdf" download>[ DOWNLOAD CV ]</a>
+            <a href="https://image2url.com/r2/default/images/1771150370252-5450d2ff-ca50-4e3d-8cd5-d0120a68684b.png" download>[ DOWNLOAD RESUME ]</a>
           </Button>
         </div>
       </div>

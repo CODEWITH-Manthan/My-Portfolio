@@ -20,9 +20,9 @@
     },
     {
       "id": "profile-picture",
-      "description": "Manthan Ilake, Web Developer",
-      "imageUrl": "https://storage.googleapis.com/studioprod-521a0.appspot.com/image_1721184918073.jpeg",
-      "imageHint": "man selfie"
+      "description": "Profile Photo",
+      "imageUrl": "/profile-photo.jpg",
+      "imageHint": "man wearing suit and sunglasses"
     }
   ]
 }
