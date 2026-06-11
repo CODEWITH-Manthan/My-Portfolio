@@ -287,7 +287,7 @@ export default function AboutSection() {
 
             {/* Stats row */}
             <div className="stats-row">
-              <AnimatedCounter target={15} label="PROJECTS" suffix="+" />
+              <AnimatedCounter target={3} label="PROJECTS" suffix="+" />
               <AnimatedCounter target={2} label="YRS EXP" suffix="+" />
               <AnimatedCounter target={100} label="COMMITS" suffix="+" />
             </div>

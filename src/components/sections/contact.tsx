@@ -5,7 +5,7 @@ import Link from 'next/link';
 const socialLinks = [
   { icon: Github, href: 'https://github.com/CODEWITH-Manthan', label: 'GitHub' },
   { icon: Linkedin, href: 'https://www.linkedin.com/in/manthan-s-ilake-131210370', label: 'LinkedIn' },
-  { icon: Instagram, href: 'https://www.instagram.com/_manthannnnnnnn_', label: 'Instagram' },
+  { icon: Instagram, href: 'https://www.instagram.com/_manthannnnn_27', label: 'Instagram' },
 ];
 
 export default function ContactSection() {

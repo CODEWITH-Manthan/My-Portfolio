@@ -11,21 +11,21 @@ const projects = [
     title: 'AlumniConnect',
     description: 'A web platform for alumni of an institution to connect with each other, share experiences and opportunities.',
     tech: ['TypeScript', 'Next.js', 'Firebase', 'Tailwind CSS'],
-    link: 'https://github.com/CODEWITH-Manthan/AlumniConnect'
+    link: 'https://alumni-connect-uk2q.vercel.app/'
   },
   {
     id: 'project-02',
-    title: 'TRACKFIT',
-    description: 'Fitness tracking application with various features.',
-    tech: ['TypeScript'],
-    link: 'https://github.com/CODEWITH-Manthan/TRACKFIT'
-  },
-  {
-    id: 'project-03',
     title: 'SPIT_DD',
     description: 'Project SPIT_DD for arcade core OS.',
     tech: ['TypeScript'],
-    link: 'https://github.com/CODEWITH-Manthan/SPIT_DD'
+    link: 'https://arcadecoreos.vercel.app/'
+  },
+  {
+    id: 'project-03',
+    title: 'Aphelion-Blockchain',
+    description: 'A blockchain-based application providing decentralized solutions with modern web technologies.',
+    tech: ['Blockchain', 'Web3', 'TypeScript'],
+    link: 'https://aphelion-phi.vercel.app/login'
   }
 ]
 
@@ -73,7 +73,7 @@ export default function ProjectsSection() {
                         </div>
                         <Button asChild variant="link" className="p-0 font-bold text-primary">
                           <Link href={project.link} target="_blank" rel="noopener noreferrer">
-                            View Repo <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            Visit Site <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                           </Link>
                         </Button>
                       </CardFooter>
