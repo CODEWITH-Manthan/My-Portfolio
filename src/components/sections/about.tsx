@@ -1,361 +1,170 @@
 'use client';
+import React, { useRef, useEffect, useState } from 'react';
+import { GraduationCap, Target, Heart, Zap, Coffee, Lightbulb } from 'lucide-react';
 
-import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+type BentoCard = {
+  title: string;
+  content: React.ReactNode;
+  className?: string;
+  icon: React.ReactNode;
+  accent?: string;
+};
 
-// Animated counter component
-function AnimatedCounter({ target, label, suffix = '' }: { target: number; label: string; suffix?: string }) {
-  const [count, setCount] = useState(0);
+function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
-  const counted = useRef(false);
-
+  const [visible, setVisible] = useState(false);
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !counted.current) {
-          counted.current = true;
-          let start = 0;
-          const duration = 2000;
-          const startTime = performance.now();
-          const animate = (currentTime: number) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            // Ease out cubic
-            const eased = 1 - Math.pow(1 - progress, 3);
-            start = Math.floor(eased * target);
-            setCount(start);
-            if (progress < 1) requestAnimationFrame(animate);
-          };
-          requestAnimationFrame(animate);
-        }
-      },
-      { threshold: 0.5 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [target]);
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return { ref, visible };
+}
 
+function BentoItem({ card, delay }: { card: BentoCard; delay: number }) {
+  const { ref, visible } = useInView(0.1);
   return (
-    <div ref={ref} className="stat-card group">
-      <div className="stat-number">
-        {count}{suffix}
+    <div
+      ref={ref}
+      className={`bento-card ${card.className ?? ''}`}
+      style={{
+        transition: `opacity 0.6s ${delay}ms cubic-bezier(0.16,1,0.3,1), transform 0.6s ${delay}ms cubic-bezier(0.16,1,0.3,1)`,
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(24px)',
+      }}
+    >
+      <div className="flex items-center gap-2 mb-3">
+        <div style={{ color: card.accent ?? '#4F8CFF' }}>{card.icon}</div>
+        <span className="text-white/30 text-xs tracking-widest uppercase">{card.title}</span>
       </div>
-      <div className="stat-label">{label}</div>
-      <div className="stat-glow" />
+      <div>{card.content}</div>
     </div>
   );
 }
 
-// Typing effect for terminal
-function TerminalTyping({ lines }: { lines: string[] }) {
-  const [displayedLines, setDisplayedLines] = useState<string[]>([]);
-  const [currentLine, setCurrentLine] = useState(0);
-  const [currentChar, setCurrentChar] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const started = useRef(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-        }
-      },
-      { threshold: 0.3 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!started.current) return;
-    if (currentLine >= lines.length) return;
-
-    const timer = setTimeout(() => {
-      if (currentChar < lines[currentLine].length) {
-        setDisplayedLines((prev) => {
-          const newLines = [...prev];
-          newLines[currentLine] = (newLines[currentLine] || '') + lines[currentLine][currentChar];
-          return newLines;
-        });
-        setCurrentChar((c) => c + 1);
-      } else {
-        setCurrentLine((l) => l + 1);
-        setCurrentChar(0);
-        setDisplayedLines((prev) => [...prev, '']);
-      }
-    }, 25 + Math.random() * 30);
-
-    return () => clearTimeout(timer);
-  }, [currentLine, currentChar, lines]);
-
-  return (
-    <div ref={ref} className="terminal-window">
-      <div className="terminal-header">
-        <div className="terminal-dots">
-          <span className="dot dot-red" />
-          <span className="dot dot-yellow" />
-          <span className="dot dot-green" />
+const cards: BentoCard[] = [
+  {
+    title: 'Who I Am',
+    icon: <Coffee size={16} />,
+    accent: '#4F8CFF',
+    content: (
+      <div>
+        <p className="text-white/60 text-sm leading-relaxed">
+          Highly motivated <span className="text-electric font-medium">Full-Stack Developer</span> from Mumbai and an Electronics & Computer Science student. I love transforming ideas into fast, scalable, and user-centric web applications using React, Next.js, Node.js, TypeScript, and modern development practices. Always learning, always building, and constantly pushing myself to create better digital experiences.
+        </p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {['Frontend', 'Backend', 'UI/UX'].map(t => (
+            <span key={t} className="skill-chip" style={{ fontSize: '0.7rem', padding: '0.2rem 0.6rem' }}>{t}</span>
+          ))}
         </div>
-        <span className="terminal-title">manthan@portfolio:~$ cat profile.sys</span>
       </div>
-      <div className="terminal-body">
-        {displayedLines.map((line, i) => (
-          <div key={i} className="terminal-line">
-            <span className="terminal-prompt">{i === 0 ? '>' : '│'}</span>
-            <span>{line}</span>
-            {i === currentLine && currentLine < lines.length && (
-              <span className="terminal-cursor">█</span>
-            )}
+    ),
+    className: 'col-span-2',
+  },
+  {
+    title: 'Education',
+    icon: <GraduationCap size={16} />,
+    accent: '#8B5CF6',
+    content: (
+      <div>
+        <p className="font-semibold text-white/80 text-sm">VESIT</p>
+        <p className="text-white/35 text-xs mt-0.5 leading-relaxed">Vivekanand Education Society Institute of Technology</p>
+        <p className="text-purple-acc text-xs mt-1.5">Electronics &amp; Computer Science Engineering</p>
+        <div className="flex items-center gap-2 mt-2">
+          <span className="text-white/20 text-xs tracking-wider px-2 py-0.5 border border-white/6 rounded">2024</span>
+          <span className="text-white/20 text-xs">→</span>
+          <span className="text-white/20 text-xs tracking-wider px-2 py-0.5 border border-white/6 rounded">2028</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: 'Career Goal',
+    icon: <Target size={16} />,
+    accent: '#22C55E',
+    content: (
+      <p className="text-white/50 text-sm leading-relaxed">
+        Land an impactful internship at a <span className="text-success font-medium">top-tier tech company</span>, contribute to open source, and build products that reach millions.
+      </p>
+    ),
+  },
+  {
+    title: 'Tech I Love',
+    icon: <Heart size={16} />,
+    accent: '#F97316',
+    content: (
+      <div className="flex flex-wrap gap-1.5">
+        {['React', 'Next.js', 'TypeScript', 'Node.js', 'Firebase', 'Tailwind', 'PostgreSQL'].map(t => (
+          <span key={t} className="skill-chip">{t}</span>
+        ))}
+      </div>
+    ),
+  },
+  {
+    title: 'Current Focus',
+    icon: <Zap size={16} />,
+    accent: '#4F8CFF',
+    content: (
+      <div className="space-y-2">
+        {[
+          { label: 'MERN Stack mastery', done: true },
+          { label: 'System design patterns', done: false },
+          { label: 'Open Source contributions', done: false },
+          { label: 'Blockchain / Web3', done: false },
+        ].map(item => (
+          <div key={item.label} className="flex items-center gap-2.5">
+            <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${item.done ? 'bg-success' : 'bg-white/15'}`} />
+            <span className={`text-xs ${item.done ? 'text-white/60 line-through' : 'text-white/40'}`}>{item.label}</span>
           </div>
         ))}
       </div>
-    </div>
-  );
-}
-
-// Floating 3D hex grid background
-function HexGrid() {
-  return (
-    <div className="hex-grid-container" aria-hidden="true">
-      {Array.from({ length: 24 }).map((_, i) => (
-        <div
-          key={i}
-          className="hex-cell"
-          style={{
-            left: `${(i % 6) * 17 + (Math.floor(i / 6) % 2 === 0 ? 0 : 8.5)}%`,
-            top: `${Math.floor(i / 6) * 26}%`,
-            animationDelay: `${i * 0.15}s`,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-// Animated skill bar
-function SkillBar({ name, level, delay }: { name: string; level: number; delay: number }) {
-  const [width, setWidth] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setWidth(level), delay);
-        }
-      },
-      { threshold: 0.5 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [level, delay]);
-
-  return (
-    <div ref={ref} className="skill-bar-wrapper">
-      <div className="skill-bar-header">
-        <span className="skill-name">{name}</span>
-        <span className="skill-percent">{width}%</span>
-      </div>
-      <div className="skill-bar-track">
-        <div
-          className="skill-bar-fill"
-          style={{ width: `${width}%`, transitionDelay: `${delay}ms` }}
-        />
-        <div className="skill-bar-glow" style={{ width: `${width}%`, transitionDelay: `${delay}ms` }} />
-      </div>
-    </div>
-  );
-}
+    ),
+  },
+  {
+    title: 'Fun Fact',
+    icon: <Lightbulb size={16} />,
+    accent: '#8B5CF6',
+    content: (
+      <p className="text-white/45 text-sm leading-relaxed">
+        I debug code at <span className="text-purple-acc">2 AM</span> with lo-fi beats and consider it peak productivity. Also a marketing strategist helping clients build unique brand strategies. ☕
+      </p>
+    ),
+  },
+];
 
 export default function AboutSection() {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const terminalLines = [
-    '> INITIALIZING PROFILE SCAN...',
-    '> SUBJECT: Manthan Ilake',
-    '> ROLE: Full-Stack Web Developer',
-    '> STATUS: ACTIVE | ONLINE',
-    '> CLEARANCE: LEVEL_5',
-    '> ',
-    '> Highly motivated web developer with a solid',
-    '> computer science education. Extensive expertise',
-    '> building responsive and interactive web pages.',
-    '> Detail-oriented with focus on user experience.',
-    '> Also a marketing strategist helping clients',
-    '> create unique strategies to raise their profile.',
-    '> ',
-    '> [SCAN COMPLETE] ✓',
-  ];
-
-  const skills = [
-    { name: 'Frontend Development', level: 90 },
-    { name: 'Backend Systems', level: 75 },
-    { name: 'Responsive Design', level: 95 },
-    { name: 'Marketing Strategy', level: 80 },
-    { name: 'UI/UX Design', level: 85 },
-  ];
-
   return (
-    <section
-      id="about"
-      ref={sectionRef}
-      className="about-section"
-    >
-      {/* Background effects */}
-      <HexGrid />
-      <div className="cyber-grid-bg" aria-hidden="true" />
+    <section id="about" className="py-28 relative overflow-hidden" style={{ background: '#050505' }}>
+      {/* Subtle grid */}
+      <div className="animated-grid" aria-hidden="true" style={{ opacity: 0.4 }} />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        {/* Section header */}
-        <div className={`section-header ${isVisible ? 'animate-in' : ''}`}>
-          {/* <div className="glitch-label">
-            <span className="label-bracket">[</span>
-            <span className="label-text">SECTION_02</span>
-            <span className="label-bracket">]</span>
-          </div> */}
-          <h2 className="section-title" data-text="ABOUT_ME">
-            ABOUT<span className="text-primary">_</span>ME
+        <div className="mb-12">
+          <div className="section-label">About me</div>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white/90">
+            The person <span className="gradient-text-blue">behind the code</span>
           </h2>
-          <div className="title-underline">
-            <div className="title-underline-fill" />
-          </div>
         </div>
 
-        {/* Main content grid */}
-        <div className="about-grid">
-          {/* Left column - 3D Photo card */}
-          <div className={`photo-column ${isVisible ? 'animate-in' : ''}`}>
-            <div className="photo-card-3d">
-              <div className="photo-card-inner">
-                {/* Decorative corner brackets */}
-                <div className="corner-bracket top-left" />
-                <div className="corner-bracket top-right" />
-                <div className="corner-bracket bottom-left" />
-                <div className="corner-bracket bottom-right" />
-
-                {/* Photo frame */}
-                <div className="photo-frame">
-                  <Image
-                    src="/profile-photo.png"
-                    alt="Manthan Ilake - Web Developer"
-                    width={600}
-                    height={600}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 30vw"
-                    className="profile-image"
-                    priority
-                  />
-                  {/* Scan overlay */}
-                  <div className="scan-overlay" />
-                  {/* Glitch lines */}
-                  <div className="glitch-overlay" />
-                </div>
-
-                {/* HUD overlay elements */}
-                <div className="hud-top-bar">
-                  <span className="hud-dot pulse" />
-                  <span className="hud-label">SUBJECT_DATA</span>
-                  <span className="hud-status">VERIFIED ✓</span>
-                </div>
-
-                <div className="hud-bottom-bar">
-                  <span className="hud-coord">LAT: 19.2183</span>
-                  <span className="hud-divider">|</span>
-                  <span className="hud-coord">LNG: 72.9781</span>
-                </div>
-
-                {/* Side data strips */}
-                <div className="data-strip-left">
-                  {['0x4D', '0x41', '0x4E', '0x54', '0x48'].map((hex, i) => (
-                    <span key={i} className="hex-byte" style={{ animationDelay: `${i * 0.2}s` }}>{hex}</span>
-                  ))}
-                </div>
-              </div>
+        {/* Stats row */}
+        <div className="grid grid-cols-3 gap-4 mb-10 max-w-sm">
+          {[
+            { value: '3+', label: 'Projects' },
+            { value: '2+', label: 'Yrs Coding' },
+            { value: '100+', label: 'Commits' },
+          ].map(s => (
+            <div key={s.label} className="text-center">
+              <p className="text-2xl font-bold text-electric">{s.value}</p>
+              <p className="text-white/25 text-xs tracking-widest mt-0.5">{s.label.toUpperCase()}</p>
             </div>
+          ))}
+        </div>
 
-            {/* Stats row */}
-            <div className="stats-row">
-              <AnimatedCounter target={3} label="PROJECTS" suffix="+" />
-              <AnimatedCounter target={2} label="YRS EXP" suffix="+" />
-              <AnimatedCounter target={100} label="COMMITS" suffix="+" />
-            </div>
-          </div>
-
-          {/* Right column - Terminal + Data */}
-          <div className={`info-column ${isVisible ? 'animate-in' : ''}`}>
-            {/* Terminal window */}
-            <TerminalTyping lines={terminalLines} />
-
-            {/* Education card */}
-            <div className="data-card">
-              <div className="data-card-header">
-                <span className="data-card-icon">📡</span>
-                <span className="data-card-title">EDUCATION_LOG</span>
-              </div>
-              <div className="data-card-body">
-                <div className="edu-item">
-                  <div className="edu-timeline-dot" />
-                  <div className="edu-content">
-                    <h4 className="edu-institution">VESIT</h4>
-                    <p className="edu-subtitle">Vivekanand Education Society Institute of Technology</p>
-                    <p className="edu-field">Electronic & Computer Science Engineering</p>
-                    <div className="edu-year">
-                      <span className="year-badge">2024</span>
-                      <span className="year-separator">→</span>
-                      <span className="year-badge">2028</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Skills bars */}
-            <div className="data-card">
-              <div className="data-card-header">
-                <span className="data-card-icon">⚡</span>
-                <span className="data-card-title">CAPABILITY_MATRIX</span>
-              </div>
-              <div className="data-card-body">
-                {skills.map((skill, i) => (
-                  <SkillBar key={skill.name} name={skill.name} level={skill.level} delay={i * 200} />
-                ))}
-              </div>
-            </div>
-
-            {/* Info cards row */}
-            <div className="info-cards-row">
-              <div className="info-card">
-                <div className="info-card-icon">📍</div>
-                <div className="info-card-content">
-                  <h4 className="info-card-label">LOCATION</h4>
-                  <p className="info-card-value">Balkum, Thane (W)</p>
-                  <p className="info-card-sub">Maharashtra, India</p>
-                </div>
-                <div className="info-card-pulse" />
-              </div>
-              <div className="info-card status-card">
-                <div className="info-card-icon">🟢</div>
-                <div className="info-card-content">
-                  <h4 className="info-card-label">STATUS</h4>
-                  <p className="info-card-value">Available</p>
-                  <p className="info-card-sub">Open to opportunities</p>
-                </div>
-                <div className="status-beacon" />
-              </div>
-            </div>
-          </div>
+        {/* Bento Grid */}
+        <div className="bento-grid">
+          {cards.map((card, i) => (
+            <BentoItem key={card.title} card={card} delay={i * 80} />
+          ))}
         </div>
       </div>
     </section>

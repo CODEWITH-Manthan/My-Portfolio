@@ -1,49 +1,41 @@
 'use client';
-
-import { useEffect, useState } from 'react';
-import { cn } from '@/lib/utils';
+import { useEffect, useRef } from 'react';
 
 export default function CustomCursor() {
-  const [position, setPosition] = useState({ x: -100, y: -100 });
-  const [isPointer, setIsPointer] = useState(false);
-  const [isClient, setIsClient] = useState(false);
+  const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setIsClient(true);
-  }, []);
+    const el = cursorRef.current;
+    if (!el) return;
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+    let raf: number;
+    let cx = 0, cy = 0;
+    let tx = 0, ty = 0;
 
-      const target = e.target as HTMLElement;
-      if (
-        window.getComputedStyle(target).getPropertyValue('cursor') === 'pointer'
-      ) {
-        setIsPointer(true);
-      } else {
-        setIsPointer(false);
-      }
+    const onMove = (e: MouseEvent) => { tx = e.clientX; ty = e.clientY; };
+
+    const animate = () => {
+      cx += (tx - cx) * 0.12;
+      cy += (ty - cy) * 0.12;
+      if (el) el.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+      raf = requestAnimationFrame(animate);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    const onEnter = () => el?.classList.add('pointer');
+    const onLeave = () => el?.classList.remove('pointer');
 
+    window.addEventListener('mousemove', onMove);
+    document.querySelectorAll('a, button, [role="button"]').forEach(el => {
+      el.addEventListener('mouseenter', onEnter);
+      el.addEventListener('mouseleave', onLeave);
+    });
+
+    raf = requestAnimationFrame(animate);
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousemove', onMove);
+      cancelAnimationFrame(raf);
     };
   }, []);
 
-  if (!isClient) {
-    return null;
-  }
-
-  return (
-    <div
-      className={cn(
-        'custom-cursor',
-        { 'pointer': isPointer }
-      )}
-      style={{ left: `${position.x}px`, top: `${position.y}px` }}
-    ></div>
-  );
+  return <div ref={cursorRef} className="custom-cursor" aria-hidden="true" />;
 }

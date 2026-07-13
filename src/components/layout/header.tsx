@@ -1,60 +1,66 @@
 'use client';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { Home, User, Cpu, BarChart2, Briefcase, Clock, Mail } from 'lucide-react';
 
-const navLinks = [
-  { href: '#about', label: '/ABOUT' },
-  { href: '#skills', label: '/SKILLS' },
-  { href: '#projects', label: '/PROJECTS' },
-  { href: '#contact', label: '/CONTACT' },
+const sections = [
+  { id: 'home', label: 'Home', icon: Home },
+  { id: 'about', label: 'About', icon: User },
+  { id: 'skills', label: 'Skills', icon: Cpu },
+  { id: 'stats', label: 'Stats', icon: BarChart2 },
+  { id: 'projects', label: 'Projects', icon: Briefcase },
+  { id: 'timeline', label: 'Timeline', icon: Clock },
+  { id: 'contact', label: 'Contact', icon: Mail },
 ];
 
-export default function Header() {
+export default function FloatingDock() {
+  const [active, setActive] = useState('home');
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+    const handleScroll = () => setScrolled(window.scrollY > 60);
+
+    const observers = sections.map(({ id }) => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActive(id); },
+        { threshold: 0.4 }
+      );
+      obs.observe(el);
+      return obs;
+    });
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observers.forEach(o => o?.disconnect());
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-        scrolled ? 'bg-background/80 backdrop-blur-sm border-b' : 'bg-transparent'
-      }`}
+    <nav
+      className="floating-dock"
+      style={{ transform: `translateX(-50%) scale(${scrolled ? 0.95 : 1})` }}
+      role="navigation"
+      aria-label="Section navigation"
     >
-      <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
-        <Link href="/" className="font-bold text-lg md:text-xl font-headline tracking-widest">
-          MANTHAN.I
-        </Link>
-        <nav className="hidden md:flex items-center gap-6">
-          <ul className="flex items-center gap-6">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-sm font-medium hover:text-primary transition-colors"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <Button
-            asChild
-            className="bg-accent text-accent-foreground hover:bg-accent/90 border-2 border-accent-foreground font-bold"
-          >
-            <Link href="#contact">[ HIRE ME ]</Link>
-          </Button>
-        </nav>
-        <div className="md:hidden">
-          {/* Mobile menu can be added here */}
-        </div>
-      </div>
-    </header>
+      {sections.map(({ id, label, icon: Icon }) => (
+        <button
+          key={id}
+          onClick={() => scrollTo(id)}
+          className={`dock-item ${active === id ? 'active' : ''}`}
+          aria-label={`Navigate to ${label}`}
+          title={label}
+        >
+          <Icon size={14} />
+          <span className="hidden sm:block">{label}</span>
+        </button>
+      ))}
+    </nav>
   );
 }
