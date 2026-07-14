@@ -4,6 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import FloatingDock from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import CustomCursor from '@/components/ui/custom-cursor';
+import SplashCursor from '@/components/ui/splash-cursor';
 import ScrollProgress from '@/components/ui/scroll-progress';
 import CommandPalette from '@/components/ui/command-palette';
 import Loader from '@/components/ui/loader';
@@ -33,6 +34,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       <div className={cn('transition-opacity duration-500', loading ? 'opacity-0' : 'opacity-100')}>
         <ScrollProgress />
         <CustomCursor />
+        <SplashCursor COLOR="#161bbf" RAINBOW_MODE={false} />
         <div className="scanline-effect" aria-hidden="true" />
         <FloatingDock />
         <main>{children}</main>
