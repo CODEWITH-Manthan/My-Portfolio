@@ -1,5 +1,6 @@
 'use client';
 import { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 import { Github, ExternalLink, ArrowRight } from 'lucide-react';
 
 const PROJECTS = [
@@ -16,6 +17,7 @@ const PROJECTS = [
     live: 'https://alumni-connect-uk2q.vercel.app/',
     accent: '#4F8CFF',
     gradient: 'from-electric/10 to-transparent',
+    thumbnail: '/Alumni-connect.png',
   },
   {
     id: 'blockchain-procurement',
@@ -30,6 +32,7 @@ const PROJECTS = [
     live: 'https://aphelion-phi.vercel.app/login',
     accent: '#8B5CF6',
     gradient: 'from-purple-acc/10 to-transparent',
+    thumbnail: '/Aphilion.jpg',
   },
 ];
 
@@ -49,10 +52,9 @@ function BlockchainFlow() {
   );
 }
 
-function ProjectCard({ project, delay }: { project: typeof PROJECTS[0]; delay: number }) {
+function ProjectCard({ project, delay, expanded, onToggle }: { project: typeof PROJECTS[0]; delay: number; expanded: boolean; onToggle: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.1 });
@@ -63,23 +65,42 @@ function ProjectCard({ project, delay }: { project: typeof PROJECTS[0]; delay: n
   return (
     <div
       ref={ref}
-      className="project-card"
+      onClick={onToggle}
+      className="project-card cursor-pointer group/card"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(32px)',
-        transition: `opacity 0.7s ${delay}ms cubic-bezier(0.16,1,0.3,1), transform 0.7s ${delay}ms cubic-bezier(0.16,1,0.3,1)`,
-        borderColor: expanded ? `${project.accent}30` : undefined,
+        transition: `opacity 0.7s ${delay}ms cubic-bezier(0.16,1,0.3,1), transform 0.7s ${delay}ms cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease`,
+        borderColor: expanded ? `${project.accent}40` : undefined,
       }}
     >
-      {/* Header gradient strip */}
+      {/* Accent rim */}
       <div
-        className="h-1 w-full"
-        style={{ background: `linear-gradient(90deg, ${project.accent}, transparent)` }}
+        className="h-px w-full"
+        style={{ background: `linear-gradient(90deg, ${project.accent}, ${project.accent}40, transparent)` }}
       />
+
+      {/* Thumbnail */}
+      {project.thumbnail && (
+        <div className="relative w-full aspect-video overflow-hidden group/thumb bg-black/20">
+          <Image
+            src={project.thumbnail}
+            alt={`${project.title} screenshot`}
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-contain transition-transform duration-700"
+          />
+          {/* Accent colour rim at bottom of image */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-px"
+            style={{ background: `linear-gradient(90deg, ${project.accent}60, transparent)` }}
+          />
+        </div>
+      )}
 
       <div className="p-6 md:p-8">
         {/* Title row */}
-        <div className="flex items-start justify-between gap-4 mb-6">
+        <div className="flex items-start justify-between gap-4 mb-4">
           <div>
             <p className="text-white/25 text-xs tracking-widest mb-1">{project.id.toUpperCase()}</p>
             <h3 className="text-2xl font-bold text-white/90">{project.title}</h3>
@@ -87,19 +108,42 @@ function ProjectCard({ project, delay }: { project: typeof PROJECTS[0]; delay: n
           </div>
           <div className="flex gap-2 flex-shrink-0">
             <a href={project.github} target="_blank" rel="noopener noreferrer"
-              className="p-2 border border-white/8 rounded-lg text-white/40 hover:text-white/80 hover:border-white/15 transition-colors"
+              onClick={(e) => e.stopPropagation()}
+              className="p-2 border border-white/8 rounded-lg text-white/40 hover:text-white/80 hover:border-white/15 transition-colors z-10 relative"
               aria-label="GitHub">
               <Github size={16} />
             </a>
             <a href={project.live} target="_blank" rel="noopener noreferrer"
-              className="p-2 border border-white/8 rounded-lg text-white/40 hover:text-white/80 hover:border-white/15 transition-colors"
+              onClick={(e) => e.stopPropagation()}
+              className="p-2 border border-white/8 rounded-lg text-white/40 hover:text-white/80 hover:border-white/15 transition-colors z-10 relative"
               aria-label="Live demo">
               <ExternalLink size={16} />
             </a>
           </div>
         </div>
 
-        <p className="text-white/45 text-sm leading-relaxed mb-6">{project.description}</p>
+        {/* Tech stack (always visible) */}
+        <div className="flex flex-wrap gap-2 mb-2">
+          {project.tech.map(t => (
+            <span
+              key={t}
+              className="tech-badge"
+              style={{ borderColor: `${project.accent}20`, color: `${project.accent}80` }}
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+
+        {/* Expand Indicator */}
+        <div className={`overflow-hidden transition-all duration-300 ${expanded ? 'max-h-0 opacity-0' : 'max-h-10 opacity-100 mt-4'}`}>
+
+        </div>
+
+        {/* EXPANDABLE CONTENT */}
+        <div className={`grid transition-all duration-500 ease-in-out ${expanded ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'}`}>
+          <div className="overflow-hidden">
+            <p className="text-white/45 text-sm leading-relaxed mb-6">{project.description}</p>
 
         {/* Problem / Solution */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -121,61 +165,53 @@ function ProjectCard({ project, delay }: { project: typeof PROJECTS[0]; delay: n
           </div>
         )}
 
-        {/* Tech stack */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.tech.map(t => (
-            <span
-              key={t}
-              className="tech-badge"
-              style={{ borderColor: `${project.accent}20`, color: `${project.accent}80` }}
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-
-        {/* Features toggle */}
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="text-xs text-white/30 hover:text-white/60 transition-colors tracking-widest flex items-center gap-2"
-        >
-          {expanded ? '↑ HIDE' : '↓ SHOW'} FEATURES
-        </button>
-
-        {expanded && (
-          <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {project.features.map(f => (
-              <div key={f} className="flex items-center gap-2">
-                <div className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: project.accent }} />
-                <span className="text-white/40 text-xs">{f}</span>
+            {/* Features (always show when expanded) */}
+            <div className="mb-6">
+              <p className="text-white/25 text-xs tracking-widest mb-3">KEY FEATURES</p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {project.features.map(f => (
+                  <div key={f} className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: project.accent }} />
+                    <span className="text-white/60 text-xs font-medium">{f}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        )}
+            </div>
 
-        {/* CTA */}
-        <div className="mt-6 flex gap-3">
-          <a
-            href={project.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg border font-medium text-sm transition-all"
-            style={{
-              borderColor: `${project.accent}30`,
-              color: project.accent,
-              background: `${project.accent}08`,
-            }}
-          >
-            View Live <ExternalLink size={13} />
-          </a>
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-white/8 text-white/40 hover:text-white/70 text-sm transition-colors"
-          >
-            <Github size={14} /> Code
-          </a>
+            {/* CTA */}
+            <div className="mt-6 flex gap-3">
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg border font-medium text-sm transition-all z-10 relative"
+                style={{
+                  borderColor: `${project.accent}30`,
+                  color: project.accent,
+                  background: `${project.accent}08`,
+                }}
+              >
+                View Live <ExternalLink size={13} />
+              </a>
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-white/8 text-white/40 hover:text-white/70 text-sm transition-colors z-10 relative"
+              >
+                <Github size={14} /> Code
+              </a>
+            </div>
+            
+            {/* Collapse Indicator */}
+            <div className="mt-6 text-center">
+              <p className="text-xs tracking-widest text-white/30 hover:text-white/60 transition-colors inline-block font-mono">
+                ↑ COLLAPSE
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -183,6 +219,8 @@ function ProjectCard({ project, delay }: { project: typeof PROJECTS[0]; delay: n
 }
 
 export default function ProjectsSection() {
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
   return (
     <section id="projects" className="py-28 relative overflow-hidden" style={{ background: '#050505' }}>
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -192,7 +230,13 @@ export default function ProjectsSection() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {PROJECTS.map((project, i) => (
-            <ProjectCard key={project.id} project={project} delay={i * 150} />
+            <ProjectCard 
+              key={project.id} 
+              project={project} 
+              delay={i * 150}
+              expanded={expandedId === project.id}
+              onToggle={() => setExpandedId(expandedId === project.id ? null : project.id)}
+            />
           ))}
         </div>
       </div>

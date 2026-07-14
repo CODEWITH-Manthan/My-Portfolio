@@ -47,8 +47,21 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-geist), 'Geist', system-ui, sans-serif;
+    /* DM Sans: refined neutral body — fluid optical sizing */
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-optical-sizing: auto;
     overflow-x: hidden;
+    letter-spacing: -0.01em;
+  }
+  /* Syne reserved for all headline-level elements */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  /* DM Mono for code, badges, labels */
+  code, kbd, pre, .font-mono {
+    font-family: 'DM Mono', ui-monospace, monospace;
   }
 }
 
@@ -85,7 +98,8 @@
 }
 
 /* ============================================
-   AURORA EFFECT
+   PREMIUM ANIMATED GRADIENT MESH BACKGROUND
+   Multi-orb system: blue anchor + violet accent + rose whisper
    ============================================ */
 .aurora {
   position: absolute;
@@ -94,39 +108,98 @@
   overflow: hidden;
 }
 
-.aurora::before,
+/* Orb 1 — Electric blue anchor (upper-left) */
+.aurora::before {
+  content: '';
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center,
+    rgba(79, 140, 255, 0.18) 0%,
+    rgba(79, 140, 255, 0.06) 40%,
+    transparent 70%
+  );
+  top: -25%;
+  left: -15%;
+  animation: orb-drift-a 18s ease-in-out infinite alternate;
+  filter: blur(1px);
+}
+
+/* Orb 2 — Deep violet (upper-right) */
 .aurora::after {
   content: '';
   position: absolute;
+  width: 800px;
+  height: 800px;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.12;
-  animation: aurora-move 12s ease-in-out infinite alternate;
+  background: radial-gradient(ellipse at center,
+    rgba(139, 92, 246, 0.16) 0%,
+    rgba(139, 92, 246, 0.05) 40%,
+    transparent 70%
+  );
+  top: -30%;
+  right: -20%;
+  animation: orb-drift-b 14s ease-in-out infinite alternate;
+  filter: blur(1px);
 }
 
-.aurora::before {
-  width: 600px;
-  height: 600px;
-  background: #4F8CFF;
-  top: -20%;
-  left: -10%;
-  animation-duration: 15s;
+/* Orb 3 — Rose whisper (lower-center, via pseudo on parent) */
+.aurora-orb3 {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center,
+    rgba(244, 63, 94, 0.08) 0%,
+    rgba(244, 63, 94, 0.02) 40%,
+    transparent 70%
+  );
+  bottom: -20%;
+  left: 30%;
+  animation: orb-drift-c 20s ease-in-out infinite alternate;
+  filter: blur(2px);
+  pointer-events: none;
 }
 
-.aurora::after {
+/* Orb 4 — Teal accent (middle) */
+.aurora-orb4 {
+  position: absolute;
   width: 500px;
   height: 500px;
-  background: #8B5CF6;
-  top: -30%;
-  right: -15%;
-  animation-duration: 10s;
-  animation-direction: alternate-reverse;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center,
+    rgba(20, 184, 166, 0.07) 0%,
+    rgba(20, 184, 166, 0.02) 40%,
+    transparent 70%
+  );
+  top: 40%;
+  right: 10%;
+  animation: orb-drift-d 16s ease-in-out infinite alternate;
+  filter: blur(1px);
+  pointer-events: none;
 }
 
-@keyframes aurora-move {
-  0% { transform: translate(0, 0) scale(1); opacity: 0.08; }
-  50% { opacity: 0.14; }
-  100% { transform: translate(60px, 40px) scale(1.2); opacity: 0.10; }
+@keyframes orb-drift-a {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(60px, 40px) scale(1.15); }
+  66%  { transform: translate(-30px, 70px) scale(0.95); }
+  100% { transform: translate(80px, -20px) scale(1.1); }
+}
+@keyframes orb-drift-b {
+  0%   { transform: translate(0, 0) scale(1); }
+  40%  { transform: translate(-50px, 60px) scale(1.2); }
+  100% { transform: translate(40px, 30px) scale(0.9); }
+}
+@keyframes orb-drift-c {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-80px, -40px) scale(1.3); }
+  100% { transform: translate(60px, 20px) scale(0.85); }
+}
+@keyframes orb-drift-d {
+  0%   { transform: translate(0, 0) scale(1); }
+  60%  { transform: translate(40px, -60px) scale(1.25); }
+  100% { transform: translate(-30px, 40px) scale(0.9); }
 }
 
 /* ============================================
@@ -677,20 +750,119 @@
   text-shadow: 0 0 30px rgba(79,140,255,0.4);
 }
 
+/* Typography system tokens */
+.font-display {
+  font-family: 'Syne', system-ui, sans-serif;
+  letter-spacing: -0.04em;
+}
+.font-body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-optical-sizing: auto;
+}
+.font-code {
+  font-family: 'DM Mono', ui-monospace, monospace;
+}
+
+/* Heading scale */
+.heading-hero {
+  font-family: 'Syne', system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+}
+.heading-section {
+  font-family: 'Syne', system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
 .gradient-text {
-  background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.6) 100%);
+  /* Richer: pure white → electric blue fade */
+  background: linear-gradient(140deg,
+    #ffffff 0%,
+    rgba(200, 220, 255, 0.85) 50%,
+    rgba(79, 140, 255, 0.7) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-blue {
-  background: linear-gradient(135deg, #4F8CFF 0%, #8B5CF6 100%);
+  /* Vivid: electric blue → violet → rose whisper */
+  background: linear-gradient(135deg,
+    #4F8CFF 0%,
+    #8B5CF6 55%,
+    #e879f9 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
 }
 
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+/* ============================================
+   SCROLL-REVEAL SYSTEM
+   Use .reveal on any element — JS adds .revealed
+   Stagger via --reveal-delay CSS var
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+}
+.reveal-left.revealed { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+}
+.reveal-right.revealed { opacity: 1; transform: translateX(0); }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+}
+.reveal-scale.revealed { opacity: 1; transform: scale(1); }
+
+/* Stagger helpers */
+.stagger-1 { --reveal-delay: 80ms; }
+.stagger-2 { --reveal-delay: 160ms; }
+.stagger-3 { --reveal-delay: 240ms; }
+.stagger-4 { --reveal-delay: 320ms; }
+.stagger-5 { --reveal-delay: 400ms; }
+.stagger-6 { --reveal-delay: 480ms; }
+
+/* Legacy fade-up kept for compatibility */
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
@@ -698,6 +870,16 @@
 
 .animate-fade-up {
   animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Hero entrance — cinematic sequential reveal */
+@keyframes hero-reveal {
+  0%   { opacity: 0; transform: translateY(40px) skewY(1deg); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0) skewY(0); }
+}
+.hero-entrance {
+  animation: hero-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes scale-in {

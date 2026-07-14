@@ -8,9 +8,12 @@ import ScrollProgress from '@/components/ui/scroll-progress';
 import CommandPalette from '@/components/ui/command-palette';
 import Loader from '@/components/ui/loader';
 import { cn } from '@/lib/utils';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
+  // Activates after loader — gives DOM time to settle
+  useScrollReveal(loading ? 0 : 0.12);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2200);
