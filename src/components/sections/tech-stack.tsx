@@ -40,7 +40,7 @@ export default function TechStackSection() {
     <section
       id="skills"
       ref={ref as React.RefObject<HTMLElement>}
-      className="py-28 relative overflow-hidden"
+      className="py-16 md:py-28 relative overflow-hidden"
       style={{ background: '#050505' }}
     >
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -52,7 +52,7 @@ export default function TechStackSection() {
           }}
         >
           <div className="section-label">Tech Stack</div>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white/90 mb-12">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white/90 mb-12">
             Tools of the <span className="gradient-text-blue">trade</span>
           </h2>
         </div>

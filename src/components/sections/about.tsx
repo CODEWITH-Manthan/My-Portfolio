@@ -59,7 +59,7 @@ const cards: BentoCard[] = [
         </div>
       </div>
     ),
-    className: 'col-span-2',
+    className: 'md:col-span-2',
   },
   {
     title: 'Education',
@@ -134,20 +134,20 @@ const cards: BentoCard[] = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-28 relative overflow-hidden" style={{ background: '#050505' }}>
+    <section id="about" className="py-16 md:py-28 relative overflow-hidden" style={{ background: '#050505' }}>
       {/* Subtle grid */}
       <div className="animated-grid" aria-hidden="true" style={{ opacity: 0.4 }} />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="mb-12">
           <div className="section-label">About me</div>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white/90">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white/90">
             The person <span className="gradient-text-blue">behind the code</span>
           </h2>
         </div>
 
         {/* Stats row */}
-        <div className="grid grid-cols-3 gap-4 mb-10 max-w-sm">
+        <div className="grid grid-cols-3 gap-4 mb-10 w-full max-w-sm">
           {[
             { value: '3+', label: 'Projects' },
             { value: '2+', label: 'Yrs Coding' },

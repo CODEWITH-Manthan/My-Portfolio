@@ -222,10 +222,10 @@ export default function ProjectsSection() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   return (
-    <section id="projects" className="py-28 relative overflow-hidden" style={{ background: '#050505' }}>
+    <section id="projects" className="py-16 md:py-28 relative overflow-hidden" style={{ background: '#050505' }}>
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="section-label">Featured Work</div>
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white/90 mb-12">
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white/90 mb-8 md:mb-12">
           Things I&apos;ve <span className="gradient-text-blue">built</span>
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

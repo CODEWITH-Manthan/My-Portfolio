@@ -113,14 +113,49 @@ export default function HeroSection() {
       ))}
 
       {/* ── Main content ─────────────────────────────────────────────── */}
-      <div className="container mx-auto px-4 md:px-6 relative z-10 py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="container mx-auto px-4 md:px-6 relative z-10 pt-24 pb-20 md:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+          {/* Mobile-only compact profile card — shows ABOVE text on small screens */}
+          <div className="flex lg:hidden justify-center hero-entrance" style={{ animationDelay: '0ms' }}>
+            <div className="flex items-center gap-4 p-4 rounded-2xl border border-white/8 bg-white/[0.02]">
+              <div className="relative w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden border border-white/10">
+                <Image
+                  src="/profile-photo.png"
+                  alt="Manthan Ilake"
+                  fill
+                  sizes="80px"
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <h3
+                  className="text-white text-base mb-0.5"
+                  style={{ fontFamily: "'Syne', system-ui, sans-serif", fontWeight: 700, letterSpacing: '-0.03em' }}
+                >
+                  Manthan Ilake
+                </h3>
+                <p className="text-white/40 text-xs mb-2">Full Stack Developer</p>
+                <div className="flex flex-wrap gap-1">
+                  {['React', 'Node.js', 'MongoDB', 'Next.js'].map(s => (
+                    <span
+                      key={s}
+                      className="skill-chip"
+                      style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.55rem', padding: '0.15rem 0.5rem' }}
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* Left — Content with staggered entrance */}
           <div>
             {/* Status badge */}
             <div
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/8 bg-white/3 text-xs text-white/50 tracking-widest mb-8 hero-entrance"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/8 bg-white/3 text-xs text-white/50 tracking-widest mb-6 md:mb-8 hero-entrance"
               style={{ animationDelay: '0ms', fontFamily: "'DM Mono', monospace" }}
             >
               <span className="online-dot" />
@@ -129,7 +164,7 @@ export default function HeroSection() {
 
             {/* Greeting */}
             <p
-              className="text-white/40 text-sm tracking-[0.2em] uppercase mb-3 hero-entrance"
+              className="text-white/40 text-sm tracking-[0.2em] uppercase mb-2 md:mb-3 hero-entrance"
               style={{ animationDelay: '100ms', fontFamily: "'DM Mono', monospace", fontSize: '0.7rem' }}
             >
               Hello, I&apos;m
@@ -141,7 +176,7 @@ export default function HeroSection() {
               style={{
                 fontFamily: "'Syne', system-ui, sans-serif",
                 fontWeight: 800,
-                fontSize: 'clamp(3rem, 8vw, 5.5rem)',
+                fontSize: 'clamp(2.5rem, 8vw, 5.5rem)',
                 lineHeight: 0.92,
                 letterSpacing: '-0.05em',
                 marginBottom: '1.1rem',
@@ -171,7 +206,7 @@ export default function HeroSection() {
 
             {/* Bio */}
             <p
-              className="text-white/35 text-sm leading-relaxed max-w-sm mb-10 hero-entrance"
+              className="text-white/35 text-sm leading-relaxed max-w-sm mb-8 md:mb-10 hero-entrance"
               style={{ animationDelay: '440ms' }}
             >
               Building scalable digital products with modern web technologies.
@@ -180,7 +215,7 @@ export default function HeroSection() {
 
             {/* CTAs */}
             <div
-              className="flex flex-wrap gap-3 hero-entrance"
+              className="flex flex-wrap gap-2 sm:gap-3 hero-entrance"
               style={{ animationDelay: '520ms' }}
             >
               <a
@@ -189,7 +224,7 @@ export default function HeroSection() {
                   e.preventDefault();
                   document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm text-white transition-all"
+                className="group inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg font-medium text-sm text-white transition-all"
                 style={{
                   background: 'linear-gradient(135deg, #4F8CFF, #8B5CF6)',
                   boxShadow: '0 0 0 1px rgba(79,140,255,0.3)',
@@ -210,7 +245,7 @@ export default function HeroSection() {
               <a
                 href="https://image2url.com/r2/default/images/1771150370252-5450d2ff-ca50-4e3d-8cd5-d0120a68684b.png"
                 download
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/10 text-white/70 font-medium text-sm transition-all"
+                className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg border border-white/10 text-white/70 font-medium text-sm transition-all"
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.2)';
                   (e.currentTarget as HTMLElement).style.color = 'white';
@@ -223,7 +258,7 @@ export default function HeroSection() {
                 }}
               >
                 <Download size={14} />
-                Download Resume
+                Resume
               </a>
 
               <a
@@ -232,7 +267,7 @@ export default function HeroSection() {
                   e.preventDefault();
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/10 text-white/70 font-medium text-sm transition-all"
+                className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg border border-white/10 text-white/70 font-medium text-sm transition-all"
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.2)';
                   (e.currentTarget as HTMLElement).style.color = 'white';
@@ -249,7 +284,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right — Developer Card */}
+          {/* Right — Developer Card (desktop only — mobile version is above) */}
           <div className="hidden lg:flex justify-center hero-entrance" style={{ animationDelay: '300ms' }}>
             <div className="dev-card animate-float w-72">
               <div className="dev-card-inner">

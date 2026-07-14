@@ -14,6 +14,33 @@ type TimelineItem = {
 
 const TIMELINE: TimelineItem[] = [
   {
+    year: '2026',
+    title: 'Blockchain Procurement System',
+    subtitle: 'Web3 Project',
+    description: 'Developed a decentralized procurement system using smart contracts and Web3.js, solving supply chain transparency problems.',
+    icon: <Star size={16} />,
+    accent: '#F97316',
+    type: 'education',
+  },
+  {
+    year: '2026',
+    title: 'AlumniConnect — Hackathon Project',
+    subtitle: 'Web Platform',
+    description: 'Built a full-stack alumni networking platform during a college hackathon. Implemented real-time features with Firebase and deployed to Vercel.',
+    icon: <Trophy size={16} />,
+    accent: '#22C55E',
+    type: 'education',
+  },
+  {
+    year: '2025',
+    title: 'Full Stack Developer Internship',
+    subtitle: 'Internship Project',
+    description: 'Worked on building and deploying web applications using React, Node.js, and Firebase. Gained hands-on experience in production-grade code and agile workflows.',
+    icon: <Briefcase size={16} />,
+    accent: '#8B5CF6',
+    type: 'work',
+  },
+  {
     year: '2024 — Present',
     title: 'B.E. Electronics & Computer Science',
     subtitle: 'VESIT, Mumbai',
@@ -24,33 +51,6 @@ const TIMELINE: TimelineItem[] = [
   },
   {
     year: '2024',
-    title: 'Full Stack Developer Internship',
-    subtitle: 'Internship Project',
-    description: 'Worked on building and deploying web applications using React, Node.js, and Firebase. Gained hands-on experience in production-grade code and agile workflows.',
-    icon: <Briefcase size={16} />,
-    accent: '#8B5CF6',
-    type: 'work',
-  },
-  {
-    year: '2024',
-    title: 'AlumniConnect — Hackathon Project',
-    subtitle: 'Web Platform',
-    description: 'Built a full-stack alumni networking platform during a college hackathon. Implemented real-time features with Firebase and deployed to Vercel.',
-    icon: <Trophy size={16} />,
-    accent: '#22C55E',
-    type: 'hackathon',
-  },
-  {
-    year: '2024',
-    title: 'Blockchain Procurement System',
-    subtitle: 'Web3 Project',
-    description: 'Developed a decentralized procurement system using smart contracts and Web3.js, solving supply chain transparency problems.',
-    icon: <Star size={16} />,
-    accent: '#F97316',
-    type: 'achievement',
-  },
-  {
-    year: '2023',
     title: 'HSC — 12th Grade',
     subtitle: 'Maharashtra State Board',
     description: 'Completed Higher Secondary Certificate examination. Focused on Physics, Chemistry, Mathematics and Computer Science.',
@@ -107,10 +107,10 @@ function TimelineCard({ item, delay, side }: { item: TimelineItem; delay: number
 
 export default function TimelineSection() {
   return (
-    <section id="timeline" className="py-28 relative overflow-hidden" style={{ background: '#050505' }}>
+    <section id="timeline" className="py-16 md:py-28 relative overflow-hidden" style={{ background: '#050505' }}>
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="section-label">Journey</div>
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white/90 mb-16">
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white/90 mb-10 md:mb-16">
           My <span className="gradient-text-blue">timeline</span>
         </h2>
 

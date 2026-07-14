@@ -46,7 +46,7 @@ export default function ContactSection() {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-28 relative overflow-hidden"
+      className="py-16 md:py-28 relative overflow-hidden"
       style={{ background: '#050505' }}
     >
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -60,7 +60,7 @@ export default function ContactSection() {
             className="mb-12"
           >
             <div className="section-label">Get in Touch</div>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white/90 mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white/90 mb-4">
               Let&apos;s Build <span className="gradient-text-blue">Something Great</span>
             </h2>
             <p className="text-white/40 text-base max-w-xl">
