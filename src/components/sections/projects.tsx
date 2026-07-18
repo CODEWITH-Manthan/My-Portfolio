@@ -1,7 +1,7 @@
 'use client';
 import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Github, ExternalLink, ArrowRight } from 'lucide-react';
+import { Github, ExternalLink } from 'lucide-react';
 
 const PROJECTS = [
   {
@@ -20,37 +20,21 @@ const PROJECTS = [
     thumbnail: '/Alumni-connect.png',
   },
   {
-    id: 'blockchain-procurement',
-    title: 'Blockchain Procurement System',
-    tagline: 'Transparent. Secure. Decentralized.',
-    description: 'A decentralized procurement system built on blockchain technology, eliminating fraud, increasing transparency, and automating supplier workflows with smart contracts.',
-    problem: 'Traditional procurement is opaque, prone to fraud, and paper-heavy with no audit trail.',
-    solution: 'Smart-contract driven procurement with immutable records, automatic escrow, and real-time tracking.',
-    tech: ['Blockchain', 'Web3.js', 'Solidity', 'TypeScript', 'Node.js'],
-    features: ['Smart contract automation', 'Immutable audit trail', 'Multi-party approval', 'Real-time tracking', 'Decentralized storage'],
-    github: 'https://github.com/CODEWITH-Manthan',
-    live: 'https://aphelion-phi.vercel.app/login',
-    accent: '#8B5CF6',
-    gradient: 'from-purple-acc/10 to-transparent',
-    thumbnail: '/Aphilion.jpg',
+    id: 'certigen',
+    title: 'Certi-Generator',
+    tagline: 'Generate certificates like a machine.',
+    description: 'Certi-Generator is a simple and modern web application that enables users to generate and download customized professional certificates instantly.',
+    problem: 'Manually creating certificates is slow, tedious, and often requires signing up for expensive, complex tools.',
+    solution: 'Upload a spreadsheet, pick a template, and generate thousands of certificates in seconds. Designed for speed, built for scale.',
+    tech: ['Next.js', 'TypeScript', 'Prisma', 'Tailwind CSS', 'PostgreSQL'],
+    features: ['Instant generation', 'Spreadsheet upload', 'Zero configuration', 'High volume processing'],
+    github: 'https://github.com/CODEWITH-Manthan/Certi-Generator',
+    live: 'https://certi-generator-five.vercel.app/',
+    accent: '#FACC15',
+    gradient: 'from-yellow-400/10 to-transparent',
+    thumbnail: '/certgen.png',
   },
 ];
-
-function BlockchainFlow() {
-  const steps = ['Buyer Request', 'Smart Contract', 'Supplier Approval', 'Escrow Lock', 'Delivery', 'Auto Release'];
-  return (
-    <div className="flex flex-wrap gap-2 items-center mt-4">
-      {steps.map((step, i) => (
-        <div key={step} className="flex items-center gap-2">
-          <div className="px-3 py-1.5 rounded-lg border border-purple/20 bg-purple/5 text-purple-acc text-xs font-medium whitespace-nowrap">
-            {step}
-          </div>
-          {i < steps.length - 1 && <ArrowRight size={12} className="text-white/20 flex-shrink-0" />}
-        </div>
-      ))}
-    </div>
-  );
-}
 
 function ProjectCard({ project, delay, expanded, onToggle }: { project: typeof PROJECTS[0]; delay: number; expanded: boolean; onToggle: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -157,13 +141,6 @@ function ProjectCard({ project, delay, expanded, onToggle }: { project: typeof P
           </div>
         </div>
 
-        {/* Blockchain flow (only for blockchain project) */}
-        {project.id === 'blockchain-procurement' && (
-          <div className="mb-6">
-            <p className="text-white/25 text-xs tracking-widest mb-2">WORKFLOW</p>
-            <BlockchainFlow />
-          </div>
-        )}
 
             {/* Features (always show when expanded) */}
             <div className="mb-6">

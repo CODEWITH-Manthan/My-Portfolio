@@ -8,6 +8,7 @@ import SplashCursor from '@/components/ui/splash-cursor';
 import ScrollProgress from '@/components/ui/scroll-progress';
 import CommandPalette from '@/components/ui/command-palette';
 import Loader from '@/components/ui/loader';
+import BackToTop from '@/components/ui/back-to-top';
 import { cn } from '@/lib/utils';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
@@ -41,6 +42,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         <Footer />
         <CommandPalette />
         <Toaster />
+        <BackToTop />
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import Image from 'next/image';
 import { Briefcase, Download, ArrowDown } from 'lucide-react';
+import MagneticButton from '@/components/ui/magnetic-button';
 
 const ROLES = ['MERN Developer', 'React Enthusiast', 'Problem Solver', 'Open Source Learner'];
 
@@ -218,69 +219,75 @@ export default function HeroSection() {
               className="flex flex-wrap gap-2 sm:gap-3 hero-entrance"
               style={{ animationDelay: '520ms' }}
             >
-              <a
-                href="#projects"
-                onClick={e => {
-                  e.preventDefault();
-                  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="group inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg font-medium text-sm text-white transition-all"
-                style={{
-                  background: 'linear-gradient(135deg, #4F8CFF, #8B5CF6)',
-                  boxShadow: '0 0 0 1px rgba(79,140,255,0.3)',
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = '0 0 28px rgba(79,140,255,0.45), 0 0 0 1px rgba(79,140,255,0.5)';
-                  (e.currentTarget as HTMLElement).style.transform = 'translateY(-1px)';
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = '0 0 0 1px rgba(79,140,255,0.3)';
-                  (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
-                }}
-              >
-                <Briefcase size={14} />
-                View Projects
-              </a>
+              <MagneticButton>
+                <a
+                  href="#projects"
+                  onClick={e => {
+                    e.preventDefault();
+                    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="group inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg font-medium text-sm text-white transition-all"
+                  style={{
+                    background: 'linear-gradient(135deg, #4F8CFF, #8B5CF6)',
+                    boxShadow: '0 0 0 1px rgba(79,140,255,0.3)',
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.boxShadow = '0 0 28px rgba(79,140,255,0.45), 0 0 0 1px rgba(79,140,255,0.5)';
+                    (e.currentTarget as HTMLElement).style.transform = 'translateY(-1px)';
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.boxShadow = '0 0 0 1px rgba(79,140,255,0.3)';
+                    (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+                  }}
+                >
+                  <Briefcase size={14} />
+                  View Projects
+                </a>
+              </MagneticButton>
 
-              <a
-                href="https://image2url.com/r2/default/images/1771150370252-5450d2ff-ca50-4e3d-8cd5-d0120a68684b.png"
-                download
-                className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg border border-white/10 text-white/70 font-medium text-sm transition-all"
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.2)';
-                  (e.currentTarget as HTMLElement).style.color = 'white';
-                  (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.04)';
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)';
-                  (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.7)';
-                  (e.currentTarget as HTMLElement).style.background = '';
-                }}
-              >
-                <Download size={14} />
-                Resume
-              </a>
+              <MagneticButton>
+                <a
+                  href="https://image2url.com/r2/default/images/1771150370252-5450d2ff-ca50-4e3d-8cd5-d0120a68684b.png"
+                  download
+                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg border border-white/10 text-white/70 font-medium text-sm transition-all"
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.2)';
+                    (e.currentTarget as HTMLElement).style.color = 'white';
+                    (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.04)';
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)';
+                    (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.7)';
+                    (e.currentTarget as HTMLElement).style.background = '';
+                  }}
+                >
+                  <Download size={14} />
+                  Resume
+                </a>
+              </MagneticButton>
 
-              <a
-                href="#contact"
-                onClick={e => {
-                  e.preventDefault();
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg border border-white/10 text-white/70 font-medium text-sm transition-all"
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.2)';
-                  (e.currentTarget as HTMLElement).style.color = 'white';
-                  (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.04)';
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)';
-                  (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.7)';
-                  (e.currentTarget as HTMLElement).style.background = '';
-                }}
-              >
-                Contact Me
-              </a>
+              <MagneticButton>
+                <a
+                  href="#contact"
+                  onClick={e => {
+                    e.preventDefault();
+                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg border border-white/10 text-white/70 font-medium text-sm transition-all"
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.2)';
+                    (e.currentTarget as HTMLElement).style.color = 'white';
+                    (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.04)';
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)';
+                    (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.7)';
+                    (e.currentTarget as HTMLElement).style.background = '';
+                  }}
+                >
+                  Contact Me
+                </a>
+              </MagneticButton>
             </div>
           </div>
 

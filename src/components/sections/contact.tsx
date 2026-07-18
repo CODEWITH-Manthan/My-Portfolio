@@ -2,6 +2,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { Mail, Github, Linkedin, Instagram, MapPin, Copy, Check, Send, Code } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import MagneticButton from '@/components/ui/magnetic-button';
 
 const EMAIL = 'manthanilake@gmail.com';
 
@@ -131,19 +132,20 @@ export default function ContactSection() {
             <p className="section-label mb-2">Connect with me</p>
             <div className="space-y-3">
               {socials.map(s => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bento-card flex items-center gap-3 no-underline hover:border-white/15 transition-colors"
-                >
-                  <s.icon size={15} className="text-white/35 flex-shrink-0" />
-                  <div>
-                    <p className="text-white/50 text-xs font-medium">{s.label}</p>
-                    <p className="text-white/25 text-xs">{s.handle}</p>
-                  </div>
-                </a>
+                <MagneticButton key={s.label} className="w-full flex">
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bento-card flex-1 flex items-center gap-3 no-underline hover:border-white/15 transition-colors"
+                  >
+                    <s.icon size={15} className="text-white/35 flex-shrink-0" />
+                    <div>
+                      <p className="text-white/50 text-xs font-medium">{s.label}</p>
+                      <p className="text-white/25 text-xs">{s.handle}</p>
+                    </div>
+                  </a>
+                </MagneticButton>
               ))}
             </div>
           </div>
