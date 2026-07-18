@@ -15,9 +15,9 @@ type TimelineItem = {
 const TIMELINE: TimelineItem[] = [
   {
     year: '2026',
-    title: 'Blockchain Procurement System',
-    subtitle: 'Web3 Project',
-    description: 'Developed a decentralized procurement system using smart contracts and Web3.js, solving supply chain transparency problems.',
+    title: 'Certi-Generator',
+    subtitle: 'Web Application',
+    description: 'Developed a simple and modern web application that enables users to generate and download customized professional certificates instantly.',
     icon: <Star size={16} />,
     accent: '#F97316',
     type: 'education',
